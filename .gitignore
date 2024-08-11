@@ -1,0 +1,101 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+.vs/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# VS for Mac
+.vscode/*
+.vscode/dotnet-sdk.dotnet-sdk
+
+# Rider directories
+.idea/
+.idea/*
+
+# Backup & report files from converting an old project file
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# User-specific files (Mono Auto Generated Files)
+mono_crash.*
+
+# Azure Pipelines
+.azure-pipelines/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Windows OS files
+Desktop.ini
+Thumbs.db
+ehthumbs.db
+
+# JetBrains Rider
+.idea/
+.idea/*
+
+# Resharper
+.ReSharper*/
+*.DotSettings.user
+
+# NCrunch
+*.ncrunchsolution
+*.ncrunchproject
+*.ncrunch*
+.ncrunchsolution.user
+
+# Xamarin
+*.xamarin/
+*.xamarin.userprefs
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+
+# Docker
+**/[Dd]ockerfile
+**/[Dd]ocker-compose*
+**/[Dd]ockerfile.*
