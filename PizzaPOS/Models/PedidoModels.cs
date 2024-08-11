@@ -14,6 +14,14 @@ namespace PizzaPOS.Models
         public int ClienteId { get; set; }
         public int UsuarioId { get; set; }
         public int DireccionId { get; set; }
+
+        // Relación con Cliente, Usuario y Direccion
+        public ClienteModel Cliente { get; set; }
+        public UsuarioModel Usuario { get; set; }
+        public DireccionModel Direccion { get; set; }
+
+        // Relación con PedidoDetalle
+        public List<PedidoDetalleModel> PedidoDetalles { get; set; }
     }
 
     public class PedidoDetalleModel
@@ -22,6 +30,10 @@ namespace PizzaPOS.Models
         public int Cantidad { get; set; }
         public int PedidoId { get; set; }
         public int ProductoId { get; set; }
+
+        // Relación con Pedido y Producto
+        public PedidoModel Pedido { get; set; }
+        public ProductoModel Producto { get; set; }
     }
 
     public class ProductoModel

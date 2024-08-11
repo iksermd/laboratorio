@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PizzaPOS.Models
 {
-    internal class LoginModel
+    internal class LoginModels
     {
+    }
+    public class UsuarioModel
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Correo { get; set; }
+        public string Contrasena { get; set; }
     }
 }
