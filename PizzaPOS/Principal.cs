@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using PizzaPOS.Models;
 using PizzaPOS;
+using System.Net.Http;
 
 namespace FormsApp
 {
@@ -24,6 +25,10 @@ namespace FormsApp
             LoadPedidos();
 
         }
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            LoadPedidos();
+        }
 
         private async void LoadPedidos()
         {
@@ -36,7 +41,7 @@ namespace FormsApp
                 {
                     var result = await response.Content.ReadAsStringAsync();
                     pedidos = JsonConvert.DeserializeObject<List<PedidoModel>>(result);
-                    lstPedidos.DataSource = pedidos;
+                    dataGridView1.DataSource = pedidos;
                 }
                 else
                 {
@@ -54,12 +59,23 @@ namespace FormsApp
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var selectedPedido = (PedidoModel)lstPedidos.SelectedItem;
-            if (selectedPedido != null)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                EliminarPedido(selectedPedido.Id);
+                // Obtener el pedido seleccionado desde el DataGridView
+                var selectedRow = dataGridView1.SelectedRows[0];
+                var selectedPedido = (PedidoModel)selectedRow.DataBoundItem;
+
+                if (selectedPedido != null)
+                {
+                    EliminarPedido(selectedPedido.Id);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un pedido para eliminar.");
             }
         }
+
 
         private async void EliminarPedido(int id)
         {
@@ -82,14 +98,26 @@ namespace FormsApp
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            var selectedPedido = (PedidoModel)lstPedidos.SelectedItem;
-            if (selectedPedido != null)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                PedidoForm pedidoForm = new PedidoForm(_token, selectedPedido.Id);
-                pedidoForm.FormClosed += (s, args) => LoadPedidos();
-                pedidoForm.Show();
+                // Obtener el pedido seleccionado desde el DataGridView
+                var selectedRow = dataGridView1.SelectedRows[0];
+                var selectedPedido = (PedidoModel)selectedRow.DataBoundItem;
+
+                if (selectedPedido != null)
+                {
+                    // Abrir el formulario de edición
+                    PedidoForm pedidoForm = new PedidoForm(_token, selectedPedido.Id);
+                    pedidoForm.FormClosed += (s, args) => LoadPedidos(); // Recargar la tabla después de cerrar el formulario
+                    pedidoForm.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un pedido para editar.");
             }
         }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -100,5 +128,26 @@ namespace FormsApp
         {
 
         }
+
+        private void crearPedido_Click(object sender, EventArgs e)
+        {
+            PedidoForm pedidoForm = new PedidoForm(_token);
+
+            // Configurar el formulario secundario para que no tenga bordes y no sea de nivel superior
+            //pedidoForm.FormBorderStyle = FormBorderStyle.None;
+            //pedidoForm.TopLevel = false;
+            //pedidoForm.Dock = DockStyle.Fill;
+
+            // Limpiar cualquier control existente en el Panel y agregar el formulario secundario
+            this.panel1.Controls.Clear();
+            this.panel1.Controls.Add(pedidoForm);
+            pedidoForm.Show();
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }

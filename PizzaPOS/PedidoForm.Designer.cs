@@ -34,17 +34,23 @@
             FechaCreacion = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+
+            // Suscribir eventos
+            this.Load += PedidoForm_Load;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Cliente, FechaCreacion });
-            dataGridView1.Location = new Point(490, 535);
+            dataGridView1.Location = new Point(31, 130);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(684, 300);
+            dataGridView1.Size = new Size(1730, 760);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Id
             // 
@@ -69,6 +75,16 @@
             FechaCreacion.Name = "FechaCreacion";
             FechaCreacion.ReadOnly = true;
             FechaCreacion.Width = 200;
+            //
+            //BotonEliminar
+            //
+            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+            btnEliminar.HeaderText = "Eliminar";
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnEliminar);
+
             // 
             // PedidoForm
             // 
@@ -81,6 +97,8 @@
             Load += PedidoForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+
+
         }
 
         #endregion
@@ -88,5 +106,6 @@
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Cliente;
         private DataGridViewTextBoxColumn FechaCreacion;
+
     }
 }
