@@ -12,12 +12,12 @@ using System.Net.Http;
 
 namespace FormsApp
 {
-    public partial class Principal : Form
+    public partial class Pedidos : Form
     {
         private readonly string _token;
         private readonly string apiUrl;
         private List<PedidoModel> pedidos;
-        public Principal(string token)
+        public Pedidos(string token)
         {
             InitializeComponent();
             _token = token;
@@ -52,7 +52,7 @@ namespace FormsApp
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            PedidoForm pedidoForm = new PedidoForm(_token);
+            PedidoDetalleForm pedidoForm = new PedidoDetalleForm(_token);
             pedidoForm.FormClosed += (s, args) => LoadPedidos();
             pedidoForm.Show();
         }
@@ -107,7 +107,7 @@ namespace FormsApp
                 if (selectedPedido != null)
                 {
                     // Abrir el formulario de edición
-                    PedidoForm pedidoForm = new PedidoForm(_token, selectedPedido.Id);
+                    PedidoDetalleForm pedidoForm = new PedidoDetalleForm(_token, selectedPedido.Id);
                     pedidoForm.FormClosed += (s, args) => LoadPedidos(); // Recargar la tabla después de cerrar el formulario
                     pedidoForm.Show();
                 }
@@ -131,15 +131,15 @@ namespace FormsApp
 
         private void crearPedido_Click(object sender, EventArgs e)
         {
-            PedidoForm pedidoForm = new PedidoForm(_token);
+            PedidoDetalleForm pedidoForm = new PedidoDetalleForm(_token);
 
             // Configurar el formulario secundario para que no tenga bordes y no sea de nivel superior
-            //pedidoForm.FormBorderStyle = FormBorderStyle.None;
-            //pedidoForm.TopLevel = false;
-            //pedidoForm.Dock = DockStyle.Fill;
+            pedidoForm.FormBorderStyle = FormBorderStyle.None;
+            pedidoForm.TopLevel = false;
+            pedidoForm.Dock = DockStyle.Fill;
 
             // Limpiar cualquier control existente en el Panel y agregar el formulario secundario
-            this.panel1.Controls.Clear();
+            //this.panel1.Controls.Clear();
             this.panel1.Controls.Add(pedidoForm);
             pedidoForm.Show();
         }

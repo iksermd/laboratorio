@@ -35,6 +35,7 @@
             label2 = new Label();
             label3 = new Label();
             lblMensaje = new Label();
+            linkLblRegistrarse = new LinkLabel();
             SuspendLayout();
             // 
             // label1
@@ -43,10 +44,10 @@
             label1.Font = new Font("Segoe UI", 15F);
             label1.Location = new Point(283, 91);
             label1.Name = "label1";
-            label1.Size = new Size(216, 54);
+            label1.Size = new Size(184, 54);
             label1.TabIndex = 3;
-            label1.Text = "Forms App";
-            label1.Click += label1_Click;
+            label1.Text = "PizzaPOS";
+            label1.Click += linkLblRegistrarse_LinkClicked;
             // 
             // txtUsuario
             // 
@@ -66,7 +67,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(185, 525);
+            btnLogin.Location = new Point(184, 574);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(400, 46);
             btnLogin.TabIndex = 6;
@@ -101,11 +102,23 @@
             lblMensaje.Size = new Size(0, 32);
             lblMensaje.TabIndex = 9;
             // 
+            // linkLblRegistrarse
+            // 
+            linkLblRegistrarse.AutoSize = true;
+            linkLblRegistrarse.Location = new Point(190, 492);
+            linkLblRegistrarse.Name = "linkLblRegistrarse";
+            linkLblRegistrarse.Size = new Size(129, 32);
+            linkLblRegistrarse.TabIndex = 18;
+            linkLblRegistrarse.TabStop = true;
+            linkLblRegistrarse.Text = "Registrarse";
+            linkLblRegistrarse.LinkClicked += linkLblRegistrarse_LinkClicked;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 877);
+            Controls.Add(linkLblRegistrarse);
             Controls.Add(lblMensaje);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -115,6 +128,7 @@
             Controls.Add(label1);
             Name = "Login";
             Text = "Login";
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -128,5 +142,6 @@
         private Label label2;
         private Label label3;
         private Label lblMensaje;
+        private LinkLabel linkLblRegistrarse;
     }
 }

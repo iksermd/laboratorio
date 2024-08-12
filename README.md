@@ -18,7 +18,7 @@ PizzaPOS es un sistema de punto de venta para pizzerías, desarrollado con .NET 
 
 ## Ejecutar localmente
 
-1. Clone the project
+1. Clonar el proyecto
 
 ```bash
   git clone https://github.com/iksermd/laboratorio.git

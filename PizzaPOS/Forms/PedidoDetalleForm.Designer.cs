@@ -1,6 +1,6 @@
 ﻿namespace PizzaPOS
 {
-    partial class PedidoForm
+    partial class PedidoDetalleForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,18 +32,15 @@
             Id = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
             FechaCreacion = new DataGridViewTextBoxColumn();
+            btnEliminar = new DataGridViewButtonColumn();
+            btnRegresar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-
-            // Suscribir eventos
-            this.Load += PedidoForm_Load;
-            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Cliente, FechaCreacion });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Cliente, FechaCreacion, btnEliminar });
             dataGridView1.Location = new Point(31, 130);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -51,6 +48,7 @@
             dataGridView1.Size = new Size(1730, 760);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             // 
             // Id
             // 
@@ -75,30 +73,39 @@
             FechaCreacion.Name = "FechaCreacion";
             FechaCreacion.ReadOnly = true;
             FechaCreacion.Width = 200;
-            //
-            //BotonEliminar
-            //
-            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+            // 
+            // btnEliminar
+            // 
             btnEliminar.HeaderText = "Eliminar";
+            btnEliminar.MinimumWidth = 10;
             btnEliminar.Name = "btnEliminar";
+            btnEliminar.ReadOnly = true;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(btnEliminar);
-
+            btnEliminar.Width = 200;
+            // 
+            // btnRegresar
+            // 
+            btnRegresar.Location = new Point(1506, 54);
+            btnRegresar.Name = "btnRegresar";
+            btnRegresar.Size = new Size(150, 46);
+            btnRegresar.TabIndex = 2;
+            btnRegresar.Text = "Regresar";
+            btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // PedidoForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1869, 988);
+            Controls.Add(btnRegresar);
             Controls.Add(dataGridView1);
             Name = "PedidoForm";
             Text = "PedidoForm";
             Load += PedidoForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
-
-
         }
 
         #endregion
@@ -106,6 +113,7 @@
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Cliente;
         private DataGridViewTextBoxColumn FechaCreacion;
-
+        private DataGridViewButtonColumn btnEliminar;
+        private Button btnRegresar;
     }
 }

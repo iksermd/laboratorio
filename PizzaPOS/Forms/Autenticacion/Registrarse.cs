@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FormsApp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,35 +10,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FormsApp
+namespace PizzaPOS
 {
-    public partial class Login : Form
+    public partial class Registrarse : Form
     {
         private readonly string apiUrl;
-        public Login()
+        public Registrarse()
         {
             InitializeComponent();
-            apiUrl = Program.Configuration["ApiSettings:BaseUrl"] + "Auth/login";
+            apiUrl = Program.Configuration["ApiSettings:BaseUrl"] + "Auth/registrar";
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        public void linkLblLogin_LinkClicked(object sender, EventArgs e)
         {
 
+            //this.Close();
+            this.Hide();
+            Login mainForm = new Login();
+            mainForm.Show();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private async void btnRegistrarse_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-        private async void btnLogin_Click(object sender, EventArgs e)
-        {
+            string name = txtNombre.Text;
             string username = txtUsuario.Text;
             string password = txtContrasena.Text;
 
+
             var loginData = new
             {
+                Nombre = name,
                 Correo = username,
                 Contrasena = password
             };
@@ -55,12 +56,13 @@ namespace FormsApp
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         dynamic jsonResponse = JsonConvert.DeserializeObject(result);
-                        if (jsonResponse != null && jsonResponse.success==1) { 
+                        if (jsonResponse != null && jsonResponse.success == 1)
+                        {
                             string token = jsonResponse.token;
 
-                            MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Usuario registrado exitosamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Hide();
-                            Principal mainForm = new Principal(token);
+                            Pedidos mainForm = new Pedidos(token);
                             mainForm.Show();
                         }
                         else

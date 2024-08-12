@@ -16,14 +16,14 @@ using System.Windows.Forms;
 
 namespace PizzaPOS
 {
-    public partial class PedidoForm : Form
+    public partial class PedidoDetalleForm : Form
     {
         private bool modoEdicion = false;
         private string _token;
         private readonly string apiUrl;
         private readonly int IdPedido;
         private int eliminarColumnIndex;
-        public PedidoForm(string token, int idPedido = 0)
+        public PedidoDetalleForm(string token, int idPedido = 0)
         {
             _token = token;
             apiUrl = Program.Configuration["ApiSettings:BaseUrl"] + "PedidoDetalles/";
@@ -116,7 +116,7 @@ namespace PizzaPOS
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == eliminarColumnIndex && e.RowIndex>0) // eliminarColumnIndex debe ser el índice de la columna con el botón de eliminar
+            if (e.ColumnIndex == eliminarColumnIndex && e.RowIndex > 0) // eliminarColumnIndex debe ser el índice de la columna con el botón de eliminar
             {
                 var selectedRow = dataGridView1.Rows[e.RowIndex];
                 var detallePedido = (PedidoDetalleModel)selectedRow.DataBoundItem;
@@ -128,5 +128,9 @@ namespace PizzaPOS
             }
         }
 
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

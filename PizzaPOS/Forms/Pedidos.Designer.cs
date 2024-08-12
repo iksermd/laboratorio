@@ -1,6 +1,6 @@
 ﻿namespace FormsApp
 {
-    partial class Principal
+    partial class Pedidos
     {
         /// <summary>
         ///  Required designer variable.
