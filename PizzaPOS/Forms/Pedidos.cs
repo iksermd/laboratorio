@@ -138,11 +138,11 @@ namespace FormsApp
             pedidoForm.TopLevel = false;
             pedidoForm.Dock = DockStyle.Fill;
 
-            // Limpiar cualquier control existente en el Panel y agregar el formulario secundario
-            //this.panel1.Controls.Clear();
             this.panel1.Controls.Add(pedidoForm);
+            pedidoForm.BringToFront();
             pedidoForm.Show();
         }
+
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {

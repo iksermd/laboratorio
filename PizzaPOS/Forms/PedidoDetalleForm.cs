@@ -26,7 +26,7 @@ namespace PizzaPOS
         public PedidoDetalleForm(string token, int idPedido = 0)
         {
             _token = token;
-            apiUrl = Program.Configuration["ApiSettings:BaseUrl"] + "PedidoDetalles/";
+            apiUrl = Program.Configuration["ApiSettings:BaseUrl"] ;
             IdPedido = idPedido;
 
             InitializeComponent();
@@ -50,12 +50,12 @@ namespace PizzaPOS
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
-                HttpResponseMessage response = await client.GetAsync(apiUrl + IdPedido);
+                HttpResponseMessage response = await client.GetAsync(apiUrl+ "Pedidos/"+ IdPedido);
 
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    var pedidoDetalles = JsonConvert.DeserializeObject<List<PedidoDetalleModel>>(result);
+                    var pedidoDetalles = JsonConvert.DeserializeObject<List<PedidoModel>>(result);
                     dataGridView1.DataSource = pedidoDetalles;
                 }
                 else
@@ -71,7 +71,7 @@ namespace PizzaPOS
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
-                HttpResponseMessage response = await client.DeleteAsync(apiUrl + IdPedido);
+                HttpResponseMessage response = await client.DeleteAsync(apiUrl+ "PedidoDetalles/"+ IdPedido);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -98,7 +98,7 @@ namespace PizzaPOS
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
                     var content = new StringContent(JsonConvert.SerializeObject(detallePedido), Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = await client.PutAsync(apiUrl + IdPedido, content);
+                    HttpResponseMessage response = await client.PutAsync(apiUrl + "PedidoDetalles/" + IdPedido, content);
 
                     if (!response.IsSuccessStatusCode)
                     {

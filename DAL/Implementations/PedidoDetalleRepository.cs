@@ -12,6 +12,7 @@ namespace DAL.Implementations
     public interface IPedidoDetalleRepository : IRepository<PedidoDetalle>
     {
         Task<PedidoDetalle> GetPedidoDetalleWithProductosAsync(int id);
+
     }
 
     public class PedidoDetalleRepository : Repository<PedidoDetalle>, IPedidoDetalleRepository
@@ -21,6 +22,13 @@ namespace DAL.Implementations
         }
 
         public async Task<PedidoDetalle> GetPedidoDetalleWithProductosAsync(int id)
+        {
+            return await _context.PedidoDetalles
+                                 .Include(c => c.Producto)
+                                 .FirstOrDefaultAsync(c => c.Id == id);
+
+        }
+        public async Task<PedidoDetalle> GetPedidoDetalleByPedidoAsync(int id)
         {
             return await _context.PedidoDetalles
                                  .Include(c => c.Producto)

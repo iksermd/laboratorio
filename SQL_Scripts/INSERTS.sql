@@ -16,5 +16,12 @@ INSERT INTO Direcciones (Calle, Ciudad, Departamento, ClienteId) VALUES
 ('Calle 2', 'La Esperanza', 'Intibucá', 2),
 ('Calle 3', 'San Pedro Sula', 'Cortés', 3);
 
+
 INSERT INTO Usuarios (Nombre, Correo, Contrasena) VALUES
 ('Usuario','usuario@correo.com','$2a$11$qIDJdaRPEg6vHa.4iAJJnebT2M.lnryqCn2RTMC6bO1oEbiC0AwDK')
+
+INSERT INTO Pedidos (Fecha_Creacion, Total, ClienteId, UsuarioId, DireccionId) VALUES 
+('2024-10-10 00:00:00.0000000', 200, 1, 1, 1),
+('2024-10-11 00:00:00.0000000', 450, 2, 1, 2),
+('2024-10-09 00:00:00.0000000', 600, 3, 1, 1),
+('2024-10-10 00:00:00.0000000', 200, 1, 1, 2);
